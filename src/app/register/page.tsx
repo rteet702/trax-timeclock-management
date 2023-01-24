@@ -6,7 +6,7 @@ import { Open_Sans } from "@next/font/google";
 import { NextPage } from "next";
 import { useState } from "react";
 
-const oSans = Open_Sans({ subsets: ["latin"], axes: ["wdth"] });
+const oSans = Open_Sans({ subsets: ["latin"] });
 
 const RegisterPage: NextPage = () => {
     const [active, setActive] = useState(0);
