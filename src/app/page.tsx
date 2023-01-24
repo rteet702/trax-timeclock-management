@@ -1,13 +1,13 @@
-import { Inter } from "@next/font/google";
+import { Open_Sans } from "@next/font/google";
 import Link from "next/link";
 import TextInput from "../components/TextInput";
 
-const inter = Inter({ subsets: ["latin"] });
+const oSans = Open_Sans({ subsets: ["latin"], axes: ["wdth"] });
 
 export default function Home() {
     return (
         <main
-            className={`h-screen backdrop-blur-sm flex items-center justify-center ${inter.className}`}
+            className={`h-screen backdrop-blur-sm flex items-center justify-center tracking-widest ${oSans.className}`}
         >
             <div className="bg-white rounded shadow-2xl p-5 flex flex-col gap-5 items-center w-11/12 lg:w-fit">
                 <div className="flex flex-col items-center">
