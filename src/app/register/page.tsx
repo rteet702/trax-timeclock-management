@@ -22,7 +22,7 @@ const RegisterPage: NextPage = () => {
         <main
             className={`h-screen backdrop-blur-sm flex items-center justify-center tracking-widest ${oSans.className}`}
         >
-            <div className="bg-white rounded shadow-2xl p-5 flex gap-5 items-center w-11/12">
+            <div className="bg-white rounded shadow-2xl p-5 flex gap-5 items-start w-11/12 ">
                 <div className="flex-1 hidden lg:flex flex-col shadow-lg rounded-lg overflow-hidden">
                     {steps.map((step, index) => {
                         return (
