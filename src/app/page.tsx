@@ -24,7 +24,7 @@ export default function Home() {
                 </form>
                 <p>
                     Not a user?{" "}
-                    <Link href="/" className="text-blue-500">
+                    <Link href="/register" className="text-blue-500">
                         Register Now!
                     </Link>
                 </p>
