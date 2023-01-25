@@ -12,10 +12,22 @@ const RegisterPage: NextPage = () => {
     const [active, setActive] = useState(0);
     const [accountType, setAccountType] = useState("");
 
+    const [userInfo, setUserInfo] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    });
+
     const steps = ["Specify type of account", "Enter basic info"];
     const pages = [
         <PageOne setAccountType={setAccountType} accountType={accountType} />,
-        <PageTwo accountType={accountType} />,
+        <PageTwo
+            accountType={accountType}
+            userInfo={userInfo}
+            setUserInfo={setUserInfo}
+        />,
     ];
 
     return (
@@ -43,7 +55,7 @@ const RegisterPage: NextPage = () => {
                     })}
                 </div>
 
-                <form className="flex-[3] bg-neutral-100 flex flex-col gap-5 p-5">
+                <form className="flex-[3] h-[500px] bg-neutral-100 flex flex-col justify-between gap-5 p-5">
                     {pages[active]}
                     <div className="flex gap-3">
                         {active !== 0 && (

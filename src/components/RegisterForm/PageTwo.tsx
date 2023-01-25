@@ -1,11 +1,25 @@
-import { FunctionComponent } from "react";
+import { Dispatch, FormEvent, FunctionComponent, SetStateAction } from "react";
 import TextInput from "../TextInput";
+
+type UserInfo = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+};
 
 interface IProps {
     accountType: string;
+    userInfo: UserInfo;
+    setUserInfo: Dispatch<SetStateAction<UserInfo>>;
 }
 
-const PageTwo: FunctionComponent<IProps> = ({ accountType }) => {
+const PageTwo: FunctionComponent<IProps> = ({
+    accountType,
+    userInfo,
+    setUserInfo,
+}) => {
     if (accountType === "Employer") {
         return (
             <>
@@ -34,14 +48,72 @@ const PageTwo: FunctionComponent<IProps> = ({ accountType }) => {
     } else if (accountType === "Employee") {
         return (
             <div className="flex flex-col gap-5">
-                <h2 className="text-4xl">
+                <h2 className="text-4xl text-center">
                     First, let us get some info from you!
                 </h2>
-                <TextInput placeholder="first name..." />
-                <TextInput placeholder="last name..." />
-                <TextInput placeholder="email..." type="email" />
-                <TextInput placeholder="password..." type="password" />
-                <TextInput placeholder="confirm password..." type="password" />
+                <TextInput
+                    placeholder="first name..."
+                    value={userInfo.firstName}
+                    onChange={(e: any) =>
+                        setUserInfo((prev) => {
+                            return {
+                                ...prev,
+                                firstName: e.target.value,
+                            };
+                        })
+                    }
+                />
+                <TextInput
+                    placeholder="last name..."
+                    value={userInfo.lastName}
+                    onChange={(e: any) =>
+                        setUserInfo((prev) => {
+                            return {
+                                ...prev,
+                                lastName: e.target.value,
+                            };
+                        })
+                    }
+                />
+                <TextInput
+                    placeholder="email..."
+                    type="email"
+                    value={userInfo.email}
+                    onChange={(e: any) =>
+                        setUserInfo((prev) => {
+                            return {
+                                ...prev,
+                                email: e.target.value,
+                            };
+                        })
+                    }
+                />
+                <TextInput
+                    placeholder="password..."
+                    type="password"
+                    value={userInfo.password}
+                    onChange={(e: any) =>
+                        setUserInfo((prev) => {
+                            return {
+                                ...prev,
+                                password: e.target.value,
+                            };
+                        })
+                    }
+                />
+                <TextInput
+                    placeholder="confirm password..."
+                    type="password"
+                    value={userInfo.confirmPassword}
+                    onChange={(e: any) =>
+                        setUserInfo((prev) => {
+                            return {
+                                ...prev,
+                                confirmPassword: e.target.value,
+                            };
+                        })
+                    }
+                />
             </div>
         );
     }
