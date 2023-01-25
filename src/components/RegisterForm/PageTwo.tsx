@@ -13,12 +13,14 @@ interface IProps {
     accountType: string;
     userInfo: UserInfo;
     setUserInfo: Dispatch<SetStateAction<UserInfo>>;
+    errors: UserInfo;
 }
 
 const PageTwo: FunctionComponent<IProps> = ({
     accountType,
     userInfo,
     setUserInfo,
+    errors,
 }) => {
     if (accountType === "Employer") {
         return (
@@ -51,69 +53,104 @@ const PageTwo: FunctionComponent<IProps> = ({
                 <h2 className="text-4xl text-center">
                     First, let us get some info from you!
                 </h2>
-                <TextInput
-                    placeholder="first name..."
-                    value={userInfo.firstName}
-                    onChange={(e: any) =>
-                        setUserInfo((prev) => {
-                            return {
-                                ...prev,
-                                firstName: e.target.value,
-                            };
-                        })
-                    }
-                />
-                <TextInput
-                    placeholder="last name..."
-                    value={userInfo.lastName}
-                    onChange={(e: any) =>
-                        setUserInfo((prev) => {
-                            return {
-                                ...prev,
-                                lastName: e.target.value,
-                            };
-                        })
-                    }
-                />
-                <TextInput
-                    placeholder="email..."
-                    type="email"
-                    value={userInfo.email}
-                    onChange={(e: any) =>
-                        setUserInfo((prev) => {
-                            return {
-                                ...prev,
-                                email: e.target.value,
-                            };
-                        })
-                    }
-                />
-                <TextInput
-                    placeholder="password..."
-                    type="password"
-                    value={userInfo.password}
-                    onChange={(e: any) =>
-                        setUserInfo((prev) => {
-                            return {
-                                ...prev,
-                                password: e.target.value,
-                            };
-                        })
-                    }
-                />
-                <TextInput
-                    placeholder="confirm password..."
-                    type="password"
-                    value={userInfo.confirmPassword}
-                    onChange={(e: any) =>
-                        setUserInfo((prev) => {
-                            return {
-                                ...prev,
-                                confirmPassword: e.target.value,
-                            };
-                        })
-                    }
-                />
+                <div className="relative">
+                    {errors.firstName && (
+                        <p className="text-red-500 absolute left-0 right-0 top-[-1.3rem]">
+                            {errors.firstName}
+                        </p>
+                    )}
+                    <TextInput
+                        placeholder="first name..."
+                        value={userInfo.firstName}
+                        onChange={(e: any) =>
+                            setUserInfo((prev) => {
+                                return {
+                                    ...prev,
+                                    firstName: e.target.value,
+                                };
+                            })
+                        }
+                    />
+                </div>
+                <div className="relative">
+                    {errors.lastName && (
+                        <p className="text-red-500 absolute left-0 right-0 top-[-1.3rem]">
+                            {errors.lastName}
+                        </p>
+                    )}
+                    <TextInput
+                        placeholder="last name..."
+                        value={userInfo.lastName}
+                        onChange={(e: any) =>
+                            setUserInfo((prev) => {
+                                return {
+                                    ...prev,
+                                    lastName: e.target.value,
+                                };
+                            })
+                        }
+                    />
+                </div>
+                <div className="relative">
+                    {errors.email && (
+                        <p className="text-red-500 absolute left-0 right-0 top-[-1.3rem]">
+                            {errors.email}
+                        </p>
+                    )}
+                    <TextInput
+                        placeholder="email..."
+                        type="email"
+                        value={userInfo.email}
+                        onChange={(e: any) =>
+                            setUserInfo((prev) => {
+                                return {
+                                    ...prev,
+                                    email: e.target.value,
+                                };
+                            })
+                        }
+                    />
+                </div>
+                <div className="relative">
+                    {errors.password && (
+                        <p className="text-red-500 absolute left-0 right-0 top-[-1.3rem]">
+                            {errors.password}
+                        </p>
+                    )}
+                    <TextInput
+                        placeholder="password..."
+                        type="password"
+                        value={userInfo.password}
+                        onChange={(e: any) =>
+                            setUserInfo((prev) => {
+                                return {
+                                    ...prev,
+                                    password: e.target.value,
+                                };
+                            })
+                        }
+                    />
+                </div>
+                <div className="relative">
+                    {errors.confirmPassword && (
+                        <p className="text-red-500 absolute left-0 right-0 top-[-1.3rem]">
+                            {errors.confirmPassword}
+                        </p>
+                    )}
+                    <TextInput
+                        placeholder="confirm password..."
+                        type="password"
+                        value={userInfo.confirmPassword}
+                        onChange={(e: any) =>
+                            setUserInfo((prev) => {
+                                return {
+                                    ...prev,
+                                    confirmPassword: e.target.value,
+                                };
+                            })
+                        }
+                    />
+                </div>
             </div>
         );
     }

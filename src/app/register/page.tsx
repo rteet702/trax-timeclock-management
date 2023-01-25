@@ -3,7 +3,7 @@
 import PageOne from "@/components/RegisterForm/PageOne";
 import PageTwo from "@/components/RegisterForm/PageTwo";
 import { Open_Sans } from "@next/font/google";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 const oSans = Open_Sans({ subsets: ["latin"] });
 
@@ -19,6 +19,14 @@ const RegisterPage = () => {
         confirmPassword: "",
     });
 
+    const [errors, setErrors] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    });
+
     const steps = ["Specify type of account", "Enter basic info"];
     const pages = [
         <PageOne setAccountType={setAccountType} accountType={accountType} />,
@@ -26,8 +34,50 @@ const RegisterPage = () => {
             accountType={accountType}
             userInfo={userInfo}
             setUserInfo={setUserInfo}
+            errors={errors}
         />,
     ];
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (!validateFormData(userInfo)) {
+            return;
+        }
+    };
+
+    const validateFormData = (data: typeof userInfo): boolean => {
+        let isValid = true;
+
+        if (data.firstName.trim.length < 3) {
+            isValid = false;
+            setErrors((prev) => {
+                return {
+                    ...prev,
+                    firstName: "First Name must be at least 3 characters!",
+                };
+            });
+        }
+        if (data.lastName.trim.length < 3) {
+            isValid = false;
+            setErrors((prev) => {
+                return {
+                    ...prev,
+                    lastName: "Last Name must be at least 3 characters!",
+                };
+            });
+        }
+        if (!data.email) {
+            isValid = false;
+            setErrors((prev) => {
+                return {
+                    ...prev,
+                    email: "Please enter a valid email!",
+                };
+            });
+        }
+        return isValid;
+    };
 
     return (
         <main
@@ -53,7 +103,10 @@ const RegisterPage = () => {
                     })}
                 </div>
 
-                <form className="flex-[2.5] bg-neutral-100 flex flex-col justify-between gap-5 p-5 h-full">
+                <form
+                    onSubmit={handleSubmit}
+                    className="flex-[2.5] bg-neutral-100 flex flex-col justify-between gap-5 p-5 h-full"
+                >
                     {pages[active]}
                     <div className="flex gap-3">
                         {active !== 0 && (
