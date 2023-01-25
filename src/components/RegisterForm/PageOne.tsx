@@ -17,7 +17,9 @@ const PageOne: FunctionComponent<IProps> = ({
 
     return (
         <div className="flex flex-col items-center gap-5">
-            <h2 className="text-4xl">What type of account do you need?</h2>
+            <h2 className="text-4xl w-full text-center">
+                What type of account do you need?
+            </h2>
             <div className="flex w-full gap-5">
                 <button
                     onClick={(e) => handleSelect(e, "Employer")}
