@@ -15,7 +15,7 @@ const RegisterPage: NextPage = () => {
     const steps = ["Specify type of account", "Enter basic info"];
     const pages = [
         <PageOne setAccountType={setAccountType} accountType={accountType} />,
-        <PageTwo />,
+        <PageTwo accountType={accountType} />,
     ];
 
     return (
