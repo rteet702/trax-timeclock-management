@@ -33,7 +33,7 @@ const RegisterPage = () => {
         <main
             className={`h-screen backdrop-blur-sm flex items-center justify-center tracking-widest ${oSans.className}`}
         >
-            <div className="bg-white rounded shadow-2xl h-[550px] flex items-start w-6/12 overflow-hidden">
+            <div className="bg-white rounded-xl shadow-2xl h-[550px] flex items-start w-6/12 overflow-hidden">
                 <div className="flex-1 bg-white hidden lg:flex flex-col shadow-2xl overflow-hidden h-full">
                     {steps.map((step, index) => {
                         return (
