@@ -9,7 +9,7 @@ export default function Home() {
         <main
             className={`h-screen backdrop-blur-sm flex items-center justify-center tracking-widest ${oSans.className}`}
         >
-            <div className="bg-white rounded shadow-2xl p-5 flex flex-col gap-5 items-center w-11/12 lg:w-fit">
+            <div className="bg-neutral-100 rounded shadow-2xl p-5 flex flex-col gap-5 items-center w-11/12 lg:w-fit">
                 <div className="flex flex-col items-center">
                     <h1 className="text-4xl">TRAX</h1>
                     <p>Timeclock Management</p>

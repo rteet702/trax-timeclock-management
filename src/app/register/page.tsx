@@ -22,8 +22,8 @@ const RegisterPage: NextPage = () => {
         <main
             className={`h-screen backdrop-blur-sm flex items-center justify-center tracking-widest ${oSans.className}`}
         >
-            <div className="bg-white rounded shadow-2xl p-5 flex gap-5 items-start w-11/12 ">
-                <div className="flex-1 hidden lg:flex flex-col shadow-lg rounded-lg overflow-hidden">
+            <div className="bg-white rounded shadow-2xl flex items-start w-6/12 overflow-hidden">
+                <div className="flex-1 h-[500px] bg-white hidden lg:flex flex-col shadow-2xl overflow-hidden">
                     {steps.map((step, index) => {
                         return (
                             <div
@@ -33,9 +33,7 @@ const RegisterPage: NextPage = () => {
                                         ? "bg-blue-200"
                                         : "bg-white"
                                 } ${
-                                    index === 0
-                                        ? "border-2"
-                                        : "border-2 border-t-0"
+                                    index === 0 ? "border-none" : "border-t-2"
                                 }`}
                             >
                                 <h3 className="text-sm">Step {index + 1}:</h3>
@@ -45,7 +43,7 @@ const RegisterPage: NextPage = () => {
                     })}
                 </div>
 
-                <form className="flex-[4] bg-white flex flex-col gap-5">
+                <form className="flex-[3] bg-neutral-100 flex flex-col gap-5 p-5">
                     {pages[active]}
                     <div className="flex gap-3">
                         {active !== 0 && (
