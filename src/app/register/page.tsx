@@ -3,12 +3,11 @@
 import PageOne from "@/components/RegisterForm/PageOne";
 import PageTwo from "@/components/RegisterForm/PageTwo";
 import { Open_Sans } from "@next/font/google";
-import { NextPage } from "next";
 import { useState } from "react";
 
 const oSans = Open_Sans({ subsets: ["latin"] });
 
-const RegisterPage: NextPage = () => {
+const RegisterPage = () => {
     const [active, setActive] = useState(0);
     const [accountType, setAccountType] = useState("");
 
@@ -34,19 +33,18 @@ const RegisterPage: NextPage = () => {
         <main
             className={`h-screen backdrop-blur-sm flex items-center justify-center tracking-widest ${oSans.className}`}
         >
-            <div className="bg-white rounded shadow-2xl flex items-start w-6/12 overflow-hidden">
-                <div className="flex-1 h-[500px] bg-white hidden lg:flex flex-col shadow-2xl overflow-hidden">
+            <div className="bg-white rounded shadow-2xl h-[550px] flex items-start w-6/12 overflow-hidden">
+                <div className="flex-1 bg-white hidden lg:flex flex-col shadow-2xl overflow-hidden h-full">
                     {steps.map((step, index) => {
                         return (
                             <div
                                 key={index}
-                                className={`p-3 border-neutral-50 transition-colors ${
+                                className={`p-3 border-neutral-50 transition-colors hover:bg-blue-300 cursor-pointer ${
                                     index === active
                                         ? "bg-blue-200"
                                         : "bg-white"
-                                } ${
-                                    index === 0 ? "border-none" : "border-t-2"
                                 }`}
+                                onClick={() => setActive(index)}
                             >
                                 <h3 className="text-sm">Step {index + 1}:</h3>
                                 <p className="font-bold">{step}</p>
@@ -55,7 +53,7 @@ const RegisterPage: NextPage = () => {
                     })}
                 </div>
 
-                <form className="flex-[3] h-[500px] bg-neutral-100 flex flex-col justify-between gap-5 p-5">
+                <form className="flex-[2.5] bg-neutral-100 flex flex-col justify-between gap-5 p-5 h-full">
                     {pages[active]}
                     <div className="flex gap-3">
                         {active !== 0 && (
