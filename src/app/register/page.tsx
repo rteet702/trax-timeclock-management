@@ -3,6 +3,7 @@
 import PageOne from "@/components/RegisterForm/PageOne";
 import PageTwo from "@/components/RegisterForm/PageTwo";
 import { Open_Sans } from "@next/font/google";
+import axios from "axios";
 import { FormEvent, useState } from "react";
 
 const oSans = Open_Sans({ subsets: ["latin"] });
@@ -38,18 +39,24 @@ const RegisterPage = () => {
         />,
     ];
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!validateFormData(userInfo)) {
+            console.log("Error processing form data.", errors);
             return;
         }
+
+        axios
+            .post("/api/users", { ...userInfo })
+            .then((response) => console.log(response))
+            .catch((error) => console.error(error));
     };
 
     const validateFormData = (data: typeof userInfo): boolean => {
         let isValid = true;
 
-        if (data.firstName.trim.length < 3) {
+        if (data.firstName.length < 3) {
             isValid = false;
             setErrors((prev) => {
                 return {
@@ -58,7 +65,7 @@ const RegisterPage = () => {
                 };
             });
         }
-        if (data.lastName.trim.length < 3) {
+        if (data.lastName.length < 3) {
             isValid = false;
             setErrors((prev) => {
                 return {
@@ -73,6 +80,24 @@ const RegisterPage = () => {
                 return {
                     ...prev,
                     email: "Please enter a valid email!",
+                };
+            });
+        }
+        if (data.password.length < 6) {
+            isValid = false;
+            setErrors((prev) => {
+                return {
+                    ...prev,
+                    password: "Password must be at least 6 characters long!",
+                };
+            });
+        }
+        if (data.confirmPassword !== data.password) {
+            isValid = false;
+            setErrors((prev) => {
+                return {
+                    ...prev,
+                    confirmPassword: "Confirmation doesn't match Password!",
                 };
             });
         }
