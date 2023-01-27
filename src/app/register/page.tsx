@@ -4,7 +4,7 @@ import PageOne from "@/components/RegisterForm/PageOne";
 import PageTwo from "@/components/RegisterForm/PageTwo";
 import { Open_Sans } from "@next/font/google";
 import axios from "axios";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 const oSans = Open_Sans({ subsets: ["latin"] });
@@ -51,8 +51,7 @@ const RegisterPage = () => {
 
         axios
             .post("/api/users", { ...userInfo })
-            .then((response) => {
-                console.log(response);
+            .then(() => {
                 setUserInfo({
                     firstName: "",
                     lastName: "",
