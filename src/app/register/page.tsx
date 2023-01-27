@@ -4,6 +4,7 @@ import PageOne from "@/components/RegisterForm/PageOne";
 import PageTwo from "@/components/RegisterForm/PageTwo";
 import { Open_Sans } from "@next/font/google";
 import axios from "axios";
+import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 
 const oSans = Open_Sans({ subsets: ["latin"] });
@@ -11,6 +12,7 @@ const oSans = Open_Sans({ subsets: ["latin"] });
 const RegisterPage = () => {
     const [active, setActive] = useState(0);
     const [accountType, setAccountType] = useState("");
+    const router = useRouter();
 
     const [userInfo, setUserInfo] = useState({
         firstName: "",
@@ -49,7 +51,17 @@ const RegisterPage = () => {
 
         axios
             .post("/api/users", { ...userInfo })
-            .then((response) => console.log(response))
+            .then((response) => {
+                console.log(response);
+                setUserInfo({
+                    firstName: "",
+                    lastName: "",
+                    email: "",
+                    password: "",
+                    confirmPassword: "",
+                });
+                router.push("/dashboard");
+            })
             .catch((error) => console.error(error));
     };
 
